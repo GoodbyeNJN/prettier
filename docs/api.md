@@ -92,13 +92,13 @@ When Prettier loads configuration files and plugins, the file system structure i
 
 The promise will be rejected if the type of `fileUrlOrPath` is not `string` or `URL`.
 
-Setting `options.ignorePath` (`string | URL | (string | URL)[]`) and `options.withNodeModules` (`boolean`) influence the value of `ignored` (`false` by default).
+When setting `options.resolveConfig` (`boolean`, default `true`) to `false`, Prettier will not search for configuration file.
+
+Setting `options.ignorePath` (`string | URL | (string | URL)[]`), `options.ignorePatterns` (`string[]`) and `options.withNodeModules` (`boolean`) influence the value of `ignored` (`false` by default). Setting `options.resolveConfig` will also influence, since configuration file can contain the `ignorePatterns` option, whose value will be overridden by the `options.ignorePatterns` value if provided.
 
 If the given `fileUrlOrPath` is ignored, the `inferredParser` is always `null`.
 
 Providing [plugin](plugins.md) paths in `options.plugins` (`string[]`) helps extract `inferredParser` for files that are not supported by Prettier core.
-
-When setting `options.resolveConfig` (`boolean`, default `true`) to `false`, Prettier will not search for configuration file. This can be useful if this function is only used to check if file is ignored.
 
 ## `prettier.getSupportInfo()`
 

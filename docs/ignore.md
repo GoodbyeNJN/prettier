@@ -3,13 +3,15 @@ id: ignore
 title: Ignoring Code
 ---
 
-Use `.prettierignore` to ignore (i.e. not reformat) certain files and folders completely.
+Use a `.prettierignore` file or a configration file with `ignorePatterns` option to ignore (i.e. not reformat) certain files and folders completely.
 
 Use “prettier-ignore” comments to ignore parts of files.
 
-## Ignoring Files: .prettierignore
+## Ignoring Files
 
-To exclude files from formatting, create a `.prettierignore` file in the root of your project. `.prettierignore` uses [gitignore syntax](https://git-scm.com/docs/gitignore#_pattern_format).
+To exclude files from formatting, create a `.prettierignore` file or a [configuration file](configuration.md) (i.e. `.prettierrc`) with `ignorePatterns` option in the root of your project, both of them use [gitignore syntax](https://git-scm.com/docs/gitignore#_pattern_format). If there are both files in the root of project, they will be merged before applied.
+
+**Note:** Patterns will only be applied if `.prettierignore` or configuration file are in the root of your project, and will be _ignored_ if they are in subdirectories.
 
 Example:
 
@@ -22,7 +24,17 @@ coverage
 **/*.html
 ```
 
-It’s recommended to have a `.prettierignore` in your project! This way you can run `prettier --write .` to make sure that everything is formatted (without mangling files you don’t want, or choking on generated files). And – your editor will know which files _not_ to format!
+Which is equivalent to:
+
+```yaml
+# .prettierrc
+ignorePatterns:
+  - build
+  - coverage
+  - "**/*.html"
+```
+
+It’s recommended to have a `.prettierignore` or a configuration file with `ignorePatterns` in your project! This way you can run `prettier --write .` to make sure that everything is formatted (without mangling files you don’t want, or choking on generated files). And – your editor will know which files _not_ to format!
 
 By default prettier ignores files in version control systems directories (".git", ".sl", ".svn" and ".hg") and `node_modules` (unless the [`--with-node-modules` CLI option](cli.md#--with-node-modules) is specified). Prettier will also follow rules specified in the ".gitignore" file if it exists in the same directory from which it is run.
 

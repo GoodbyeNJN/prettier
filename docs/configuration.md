@@ -200,6 +200,22 @@ You can also switch to the `flow` parser instead of the default `babel` for .js 
 
 **Note:** _Never_ put the `parser` option at the top level of your configuration. _Only_ use it inside `overrides`. Otherwise you effectively disable Prettier’s automatic file extension based parser inference. This forces Prettier to use the parser you specified for _all_ types of files – even when it doesn’t make sense, such as trying to parse a CSS file as JavaScript.
 
+## Setting the [ignorePatterns](options.md#ignore%20patterns) option
+
+You can use the `ignorePatterns` option to exclude files from formatting. The syntax of pattern is consistent with [gitignore syntax](https://git-scm.com/docs/gitignore#_pattern_format).
+
+This option _can not_ be overridden by [Configuration Overrides](#configuration%20overrides). In other words, `ignorePatterns` in the overrides will be ignored.
+
+For example, to exclude all files in a `tests` directory:
+
+```json
+{
+  "ignorePatterns": ["**/tests/**"]
+}
+```
+
+For more information, see the [ignore documentation](ignore.md).
+
 ## Configuration Schema
 
 If you’d like a JSON schema to validate your configuration, one is available here: https://json.schemastore.org/prettierrc.

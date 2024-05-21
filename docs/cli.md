@@ -117,6 +117,11 @@ If you don’t have a configuration file, or want to ignore it if it does exist,
 Path to a file containing patterns that describe files to ignore. By default, Prettier looks for `./.gitignore` and `./.prettierignore`.\
 Multiple values are accepted.
 
+## `--ignore-pattern`
+
+Patterns describing files to ignore. Will be merged with patterns specified in `--ignore-path`.\
+Multiple values are accepted.
+
 ## `--list-different`
 
 Another useful flag is `--list-different` (or `-l`) which prints the filenames of files that are different from Prettier formatting. If there are differences the script errors out, which is useful in a CI scenario.

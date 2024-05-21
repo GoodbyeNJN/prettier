@@ -317,6 +317,22 @@ This option is only useful in the CLI and API. It doesn’t make sense to use it
 | ------- | --------------------------- | ---------------------- |
 | None    | `--stdin-filepath <string>` | `filepath: "<string>"` |
 
+## Ignore Patterns
+
+Specify filename patterns to exclude from formatting. The syntax of pattern is consistent with [gitignore syntax](https://git-scm.com/docs/gitignore#_pattern_format).
+
+These patterns will be merged with the content of `.prettierignore` and `.gitignore` files by default. You can also use the [`--ignore-path`](cli.md#--ignore-path) option to specify a different file.
+
+For example, the following will exclude all `.test.js` and `.spec.js` files from formatting:
+
+```bash
+prettier --ignore-pattern '**/*.test.js' --ignore-pattern '**/*.spec.js' --write .
+```
+
+| Default | CLI Override                | API Override                 |
+| ------- | --------------------------- | ---------------------------- |
+| None    | `--ignore-pattern <string>` | `ignorePatterns: <string[]>` |
+
 ## Require Pragma
 
 _First available in v1.7.0_
