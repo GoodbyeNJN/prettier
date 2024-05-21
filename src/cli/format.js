@@ -236,10 +236,11 @@ async function format(context, input, opt) {
   return prettier.formatWithCursor(input, opt);
 }
 
-async function createIsIgnoredFromContextOrDie(context) {
+async function createIsIgnoredOrDie(context, ignorePatterns) {
   try {
     return await createIsIgnoredFunction(
       context.argv.ignorePath,
+      ignorePatterns,
       context.argv.withNodeModules,
     );
   } catch (e) {
@@ -256,9 +257,15 @@ async function formatStdin(context) {
     // TODO[@fisker]: Exit if no input.
     // `prettier --config-precedence cli-override`
 
+    // Get root options from process.cwd()
+    const rootOptions = await getOptionsForFile(context);
+
     let isFileIgnored = false;
     if (filepath) {
-      const isIgnored = await createIsIgnoredFromContextOrDie(context);
+      const isIgnored = await createIsIgnoredOrDie(
+        context,
+        rootOptions.ignorePatterns,
+      );
       isFileIgnored = isIgnored(filepath);
     }
 
@@ -293,9 +300,6 @@ async function formatStdin(context) {
 }
 
 async function formatFiles(context) {
-  // This will be used to filter file paths after the glob is checked,
-  // before any files are actually written
-  const isIgnored = await createIsIgnoredFromContextOrDie(context);
   const cwd = process.cwd();
 
   let numberOfUnformattedFilesFound = 0;
@@ -329,6 +333,18 @@ async function formatFiles(context) {
       continue;
     }
 
+    const rootOptions = {
+      // Get root options from process.cwd()
+      ...(await getOptionsForFile(context)),
+      filepath: filename,
+    };
+
+    // This will be used to filter file paths after the glob is checked,
+    // before any files are actually written
+    const isIgnored = await createIsIgnoredOrDie(
+      context,
+      rootOptions.ignorePatterns,
+    );
     const isFileIgnored = isIgnored(filename);
     if (
       isFileIgnored &&

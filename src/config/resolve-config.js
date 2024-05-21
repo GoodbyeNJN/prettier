@@ -96,7 +96,8 @@ function mergeOverrides(configResult, filePath) {
           override.excludeFiles,
         )
       ) {
-        Object.assign(options, override.options);
+        const { ignorePatterns, ...otherOptions } = override.options;
+        Object.assign(options, otherOptions);
       }
     }
   }

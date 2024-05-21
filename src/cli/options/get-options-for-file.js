@@ -66,7 +66,7 @@ async function getOptionsOrDie(context, filePath) {
     context.logger.debug(
       context.argv.config
         ? `load config file from '${context.argv.config}'`
-        : `resolve config from '${filePath}'`,
+        : `resolve config from '${filePath || process.cwd()}'`,
     );
 
     const options = await resolveConfig(filePath, {
@@ -78,7 +78,7 @@ async function getOptionsOrDie(context, filePath) {
     return options;
   } catch (error) {
     context.logger.error(
-      `Invalid configuration${filePath ? ` for file "${filePath}"` : ""}:\n` +
+      `Invalid configuration${filePath ? ` for file "${filePath}"` : ` for directory "${process.cwd()}"`}:\n` +
         error.message,
     );
     process.exit(2);

@@ -3,7 +3,7 @@ import { isIgnored } from "../utils/ignore.js";
 import inferParser from "../utils/infer-parser.js";
 
 /**
- * @typedef {{ ignorePath?: string | URL | (string | URL)[], withNodeModules?: boolean, plugins: object, resolveConfig?: boolean }} FileInfoOptions
+ * @typedef {{ ignorePath?: string | URL | (string | URL)[], ignorePatterns?: string[], withNodeModules?: boolean, plugins: object, resolveConfig?: boolean }} FileInfoOptions
  * @typedef {{ ignored: boolean, inferredParser: string | null }} FileInfoResult
  */
 
@@ -23,13 +23,27 @@ async function getFileInfo(file, options) {
     );
   }
 
-  let { ignorePath, withNodeModules } = options;
+  let { ignorePath, ignorePatterns, withNodeModules } = options;
   // In API we allow single `ignorePath`
   if (!Array.isArray(ignorePath)) {
     ignorePath = [ignorePath];
   }
 
-  const ignored = await isIgnored(file, { ignorePath, withNodeModules });
+  if (!Array.isArray(ignorePatterns)) {
+    ignorePatterns = [];
+  }
+  if (ignorePatterns.length === 0 && options.resolveConfig !== false) {
+    const config = await resolveConfig(file);
+    if (Array.isArray(config?.ignorePatterns)) {
+      ignorePatterns.push(...config.ignorePatterns);
+    }
+  }
+
+  const ignored = await isIgnored(file, {
+    ignorePath,
+    ignorePatterns,
+    withNodeModules,
+  });
 
   let inferredParser;
   if (!ignored) {

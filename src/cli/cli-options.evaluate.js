@@ -173,7 +173,7 @@ const options = {
   fileInfo: {
     description: outdent`
       Extract the following info (as JSON) for a given file path. Reported fields:
-      * ignored (boolean) - true if file path is filtered by --ignore-path
+      * ignored (boolean) - true if file path is filtered by --ignore-path or --ignore-patterns
       * inferredParser (string | null) - name of parser inferred from file path
     `,
     type: "path",

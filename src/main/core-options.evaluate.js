@@ -92,6 +92,20 @@ const options = {
     cliCategory: CATEGORY_OTHER,
     cliDescription: "Path to the file to pretend that stdin comes from.",
   },
+  ignorePatterns: {
+    type: "string",
+    array: true,
+    default: [{ value: [] }],
+    category: CATEGORY_CONFIG,
+    description:
+      "Patterns describing files to ignore. Will be merged with patterns in --ignore-path.",
+    cliName: "ignore-pattern",
+    cliCategory: CATEGORY_CONFIG,
+    cliDescription: outdent`
+      Patterns describing files to ignore. Will be merged with patterns specified in --ignore-path.
+      Multiple values are accepted.
+    `,
+  },
   insertPragma: {
     category: CATEGORY_SPECIAL,
     type: "boolean",

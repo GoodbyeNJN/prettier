@@ -372,6 +372,11 @@ export interface RequiredOptions extends doc.printer.Options {
    */
   requirePragma: boolean;
   /**
+   * Patterns describing files to ignore. Will be merged with patterns in --ignore-path.
+   * @default []
+   */
+  ignorePatterns: string[];
+  /**
    * Prettier can insert a special @format marker at the top of files specifying that
    * the file has been formatted with prettier. This works well when used in tandem with
    * the --require-pragma option. If there is already a docblock at the top of
@@ -791,6 +796,7 @@ export interface SupportInfo {
 
 export interface FileInfoOptions {
   ignorePath?: string | URL | (string | URL)[] | undefined;
+  ignorePatterns?: string[] | undefined;
   withNodeModules?: boolean | undefined;
   plugins?: Array<string | Plugin> | undefined;
   resolveConfig?: boolean | undefined;

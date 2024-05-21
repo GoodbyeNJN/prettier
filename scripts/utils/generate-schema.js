@@ -3,10 +3,19 @@ function generateSchemaData(options) {
     $schema: "http://json-schema.org/draft-07/schema#",
     $id: "https://json.schemastore.org/prettierrc.json",
     definitions: {
+      ignorePatternsOptionDefinition: {
+        type: "object",
+        properties: Object.fromEntries(
+          options
+            .filter((option) => option.name === "ignorePatterns")
+            .map((option) => [option.name, optionToSchema(option)]),
+        ),
+      },
       optionsDefinition: {
         type: "object",
         properties: Object.fromEntries(
           options
+            .filter((option) => option.name !== "ignorePatterns")
             .sort(({ name: optionNameA }, { name: optionNameB }) =>
               optionNameA.localeCompare(optionNameB),
             )
@@ -54,6 +63,7 @@ function generateSchemaData(options) {
       {
         type: "object",
         allOf: [
+          { $ref: "#/definitions/ignorePatternsOptionDefinition" },
           { $ref: "#/definitions/optionsDefinition" },
           { $ref: "#/definitions/overridesDefinition" },
         ],
@@ -108,6 +118,7 @@ function optionTypeToSchemaType(optionType) {
         "Please use `oneOf` instead of `enum` for better description support.",
       );
     case "path":
+    case "string":
       return "string";
     default:
       throw new Error(`Unexpected optionType '${optionType}'`);
