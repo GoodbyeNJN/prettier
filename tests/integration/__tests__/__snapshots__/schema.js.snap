@@ -5,6 +5,19 @@ exports[`schema 1`] = `
   "$id": "https://json.schemastore.org/prettierrc.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
+    "ignorePatternsOptionDefinition": {
+      "properties": {
+        "ignorePatterns": {
+          "default": [],
+          "description": "Patterns describing files to ignore. Will be merged with patterns in --ignore-path.",
+          "items": {
+            "type": "string",
+          },
+          "type": "array",
+        },
+      },
+      "type": "object",
+    },
     "optionsDefinition": {
       "properties": {
         "arrowParens": {
@@ -478,6 +491,9 @@ in order for it to be formatted.",
   "oneOf": [
     {
       "allOf": [
+        {
+          "$ref": "#/definitions/ignorePatternsOptionDefinition",
+        },
         {
           "$ref": "#/definitions/optionsDefinition",
         },

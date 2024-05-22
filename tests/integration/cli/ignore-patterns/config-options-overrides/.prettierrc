@@ -1,0 +1,8 @@
+ignorePatterns:
+  - "*.ignored.js"
+semi: false
+overrides:
+  - files: "*.js"
+    options:
+      ignorePatterns:
+        - "*.js"

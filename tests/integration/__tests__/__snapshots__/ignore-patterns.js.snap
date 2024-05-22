@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ignore patterns from cli arguments should overrides config options (stdout) 1`] = `"file.js"`;
+
+exports[`ignore patterns from cli arguments should work (stdout) 1`] = `"file.js"`;
+
+exports[`ignore patterns from cli or config should merge with .prettierignore and .gitignore (stdout) 1`] = `
+"cli.ignored.js
+file.js
+git.ignored.js"
+`;
+
+exports[`ignore patterns from cli or config should merge with .prettierignore and .gitignore (stdout) 2`] = `
+"config.ignored.js
+file.js
+git.ignored.js"
+`;
+
+exports[`ignore patterns from cli or config should merge with .prettierignore and .gitignore (stdout) 3`] = `
+"cli.ignored.js
+file.js
+prettier.ignored.js"
+`;
+
+exports[`ignore patterns from cli or config should merge with .prettierignore and .gitignore (stdout) 4`] = `
+"config.ignored.js
+file.js
+prettier.ignored.js"
+`;
+
+exports[`ignore patterns from config in sub-directories should not be applied (stdout) 1`] = `"sub/file.js"`;
+
+exports[`ignore patterns from config in sub-directories should not be applied (stdout) 2`] = `"sub/file.js"`;
+
+exports[`ignore patterns from config in sub-directories should not be applied (stdout) 3`] = `"sub/file.js"`;
+
+exports[`ignore patterns from config options should work (stdout) 1`] = `"file.js"`;
+
+exports[`overrides option in config should not have ignorePatterns (stdout) 1`] = `"file.js"`;

@@ -209,7 +209,7 @@ exports[`show detailed usage with --help file-info (stdout) 1`] = `
 "--file-info <path>
 
   Extract the following info (as JSON) for a given file path. Reported fields:
-  * ignored (boolean) - true if file path is filtered by --ignore-path
+  * ignored (boolean) - true if file path is filtered by --ignore-path or --ignore-patterns
   * inferredParser (string | null) - name of parser inferred from file path"
 `;
 
@@ -266,6 +266,19 @@ Default: [.gitignore, .prettierignore]"
 `;
 
 exports[`show detailed usage with --help ignore-path (write) 1`] = `[]`;
+
+exports[`show detailed usage with --help ignore-pattern (stderr) 1`] = `""`;
+
+exports[`show detailed usage with --help ignore-pattern (stdout) 1`] = `
+"--ignore-pattern <string>
+
+  Patterns describing files to ignore. Will be merged with patterns in --ignore-path.
+  Multiple values are accepted.
+
+Default: []"
+`;
+
+exports[`show detailed usage with --help ignore-pattern (write) 1`] = `[]`;
 
 exports[`show detailed usage with --help ignore-unknown (stderr) 1`] = `""`;
 

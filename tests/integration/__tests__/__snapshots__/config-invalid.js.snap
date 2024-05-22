@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`resolves external configuration from package.json (stderr) 1`] = `
-"[error] Invalid configuration for file "<cli>/config-external-config-syntax-error/syntax-error.js":
+"[error] Invalid configuration for directory "<cli>/config-external-config-syntax-error":
 [error] THIS ERROR MESSAGE MUST COME FROM THIS syntax-error.js FILE"
 `;
 
@@ -9,20 +9,26 @@ exports[`resolves external configuration from package.json (stdout) 1`] = `""`;
 
 exports[`resolves external configuration from package.json (write) 1`] = `[]`;
 
-exports[`show warning with kebab-case option key (stderr) 1`] = `"[warn] Ignored unknown option { "print-width": 3 }. Did you mean printWidth?"`;
+exports[`show warning with kebab-case option key (stderr) 1`] = `
+"[warn] Ignored unknown option { "print-width": 3 }. Did you mean printWidth?
+[warn] Ignored unknown option { "print-width": 3 }. Did you mean printWidth?"
+`;
 
 exports[`show warning with kebab-case option key (stdout) 1`] = `""`;
 
 exports[`show warning with kebab-case option key (write) 1`] = `[]`;
 
-exports[`show warning with unknown option (stderr) 1`] = `"[warn] Ignored unknown option { hello: "world" }."`;
+exports[`show warning with unknown option (stderr) 1`] = `
+"[warn] Ignored unknown option { hello: "world" }.
+[warn] Ignored unknown option { hello: "world" }."
+`;
 
 exports[`show warning with unknown option (stdout) 1`] = `""`;
 
 exports[`show warning with unknown option (write) 1`] = `[]`;
 
 exports[`throw error for unsupported extension (stderr) 1`] = `
-"[error] Invalid configuration:
+"[error] Invalid configuration for directory "<cli>/config/invalid":
 [error] No loader specified for extension ".unsupported""
 `;
 
@@ -62,7 +68,7 @@ exports[`throw error with invalid config precedence option (configPrecedence) (s
 exports[`throw error with invalid config precedence option (configPrecedence) (write) 1`] = `[]`;
 
 exports[`throw error with invalid config target (directory) (stderr) 1`] = `
-"[error] Invalid configuration:
+"[error] Invalid configuration for directory "<cli>/config/invalid":
 [error] Unable to read '<cli>/config/invalid/folder/.prettierrc': EISDIR: illegal operation on a directory, read"
 `;
 

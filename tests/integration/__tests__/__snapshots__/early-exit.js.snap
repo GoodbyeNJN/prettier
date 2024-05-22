@@ -100,6 +100,10 @@ Config options:
   --ignore-path <path>     Path to a file with patterns describing files to ignore.
                            Multiple values are accepted.
                            Defaults to [.gitignore, .prettierignore].
+  --ignore-pattern <string>
+                           Patterns describing files to ignore. Will be merged with patterns in --ignore-path.
+                           Multiple values are accepted.
+                           Defaults to [].
   --plugin <path>          Add a plugin. Multiple plugins can be passed as separate \`--plugin\`s.
                            Defaults to [].
   --with-node-modules      Process files inside 'node_modules' directory.
@@ -126,7 +130,7 @@ Other options:
   --no-error-on-unmatched-pattern
                            Prevent errors when pattern is unmatched.
   --file-info <path>       Extract the following info (as JSON) for a given file path. Reported fields:
-                           * ignored (boolean) - true if file path is filtered by --ignore-path
+                           * ignored (boolean) - true if file path is filtered by --ignore-path or --ignore-patterns
                            * inferredParser (string | null) - name of parser inferred from file path
   -h, --help <flag>        Show CLI usage, or details about the given flag.
                            Example: --help write
@@ -265,6 +269,10 @@ Config options:
   --ignore-path <path>     Path to a file with patterns describing files to ignore.
                            Multiple values are accepted.
                            Defaults to [.gitignore, .prettierignore].
+  --ignore-pattern <string>
+                           Patterns describing files to ignore. Will be merged with patterns in --ignore-path.
+                           Multiple values are accepted.
+                           Defaults to [].
   --plugin <path>          Add a plugin. Multiple plugins can be passed as separate \`--plugin\`s.
                            Defaults to [].
   --with-node-modules      Process files inside 'node_modules' directory.
@@ -291,7 +299,7 @@ Other options:
   --no-error-on-unmatched-pattern
                            Prevent errors when pattern is unmatched.
   --file-info <path>       Extract the following info (as JSON) for a given file path. Reported fields:
-                           * ignored (boolean) - true if file path is filtered by --ignore-path
+                           * ignored (boolean) - true if file path is filtered by --ignore-path or --ignore-patterns
                            * inferredParser (string | null) - name of parser inferred from file path
   -h, --help <flag>        Show CLI usage, or details about the given flag.
                            Example: --help write
